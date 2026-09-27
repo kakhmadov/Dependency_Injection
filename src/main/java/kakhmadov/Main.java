@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.context.ApplicationContext;
 
 @SpringBootApplication
 public class Main implements CommandLineRunner {
@@ -18,8 +19,20 @@ public class Main implements CommandLineRunner {
         new SpringApplicationBuilder(Main.class).headless(false).run(args);
     }
 
+    @Autowired
+    private ApplicationContext context;
+
     @Override
     public void run(String... args) {
         System.out.println("Hello from run method, model: " + this.model);
+
+        Model m1 = context.getBean(Model.class);
+        m1.setCounter(10);
+        System.out.println("m1 Counter: " + m1.getCounter());
+
+        Model m2 = context.getBean(Model.class);
+        System.out.println("m2 Counter: " + m2.getCounter());
+        System.out.println("Sind m1 und m2 gleich? " + (m1 == m2));
     }
+
 }
