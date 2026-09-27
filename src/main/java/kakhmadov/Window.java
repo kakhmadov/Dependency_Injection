@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Component
+@View
 public class Window extends JFrame implements UI {
     private Model model;
     private Control control; // TODO Step 3: Remove
