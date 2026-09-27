@@ -24,6 +24,13 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
+        Class<?> windowClass = Window.class;
+        if (windowClass.isAnnotationPresent(View.class)) {
+            System.out.println("Reflection: Window class HAS @View annotation.");
+        } else {
+            System.out.println("Reflection: Window class does NOT have @View annotation.");
+        }
+
         System.out.println("Hello from run method, model: " + this.model);
 
         Model m1 = context.getBean(Model.class);
